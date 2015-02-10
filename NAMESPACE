@@ -1,3 +1,8 @@
 export(psbcEN)
 export(psbcFL)
 export(psbcGL)
+
+importFrom(LearnBayes, rigamma)
+import(SuppDists)
+import(mvtnorm)
+

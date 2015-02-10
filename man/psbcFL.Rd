@@ -2,10 +2,10 @@
 \alias{psbcFL}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-The function to fit the PSBC model with fused lasso prior
+Function to Fit the Penalized Semiparametric Bayesian Cox Model with Fused Lasso Prior
 }
 \description{
-The function to fit the PSBC model with fused lasso prior
+Penalized semiparametric Bayesian Cox (PSBC) model with fused lasso prior is implemented to analyze survival data with high-dimensional covariates.
 }
 \usage{
 psbcFL(survObj, priorPara, initial, rw=FALSE, mcmcPara, num.reps, 
@@ -30,7 +30,7 @@ psbcFL(survObj, priorPara, initial, rw=FALSE, mcmcPara, num.reps,
 
 \item{rw}{
 When setting to "TRUE", the conventional random walk Metropolis Hastings algorithm is used. 
-Otherwise, the mean and the variance of the proposal density is updated using the jumping rule described in Lee et al. (2013).
+Otherwise, the mean and the variance of the proposal density is updated using the jumping rule described in Lee et al. (2011).
 }
 \item{mcmcPara}{
 The list containing the values of options for Metropolis-Hastings step for \eqn{\beta};
@@ -86,8 +86,8 @@ For example, by setting "save = 1000", the algorithm saves the results every 100
 Lee, K. H., Chakraborty, S., and Sun, J. (2011). 
 Bayesian Variable Selection in Semiparametric Proportional Hazards Model for High Dimensional Survival Data. 
 \emph{The International Journal of Biostatistics}, 7, 21. \cr
-Lee, K. H., Chakraborty, S., and Sun, J. (2013).
-Survival Prediction and Variable Selection with Simultaneous Shrinkage and Grouping Priors, available from the authors upon request.
+Lee, K. H., Chakraborty, S., and Sun, J. (2015). 
+Survival Prediction and Variable Selection with Simultaneous Shrinkage and Grouping Priors, under invited revision.
 }
 \author{
 Kyu Ha Lee, Sounak Chakraborty, (Tony) Jianguo Sun
@@ -103,6 +103,8 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 %objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
+
+\dontrun{
 
 # generate some survival data
 	
@@ -133,8 +135,8 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 	priorPara$delta1	<- 0.0001
 	priorPara$delta2	<- 0.0001
 	priorPara$s			<- sort(survObj$t[survObj$di == 1])
-	priorPara$s			<- c(priorPara$s, 2 * max(survObj$t) - 
-							max(survObj$t[-which(survObj$t==max(survObj$t))]))
+	priorPara$s			<- c(priorPara$s, 2*max(survObj$t)
+	-max(survObj$t[-which(survObj$t==max(survObj$t))]))
 	priorPara$J			<- length(priorPara$s)
 
 	mcmcPara				<- list()
@@ -151,13 +153,14 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 	initial$wSq	 		<- rexp((p-1), rate = initial$lambda2Sq/2)
 
 	rw = FALSE
-	num.reps = 5
+	num.reps = 20000
 	chain = 1
 	thin = 5
 	save = 5
 
 	fitFL <- psbcFL(survObj, priorPara, initial, rw=FALSE, mcmcPara, 
-				num.reps, thin, chain, save)		
+				num.reps, thin, chain, save)
+	}						
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

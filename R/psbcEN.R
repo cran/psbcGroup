@@ -73,7 +73,6 @@ function(survObj, priorPara, initial, rw = FALSE, mcmcPara, num.reps, thin, chai
 	for(M in 1:num.reps){	
 	
 		cat("Chain", chain, "Iteration", M, fill=TRUE);
-		fsh(); 
 		
 		# Updating regression parameters
 		

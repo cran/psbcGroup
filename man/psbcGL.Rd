@@ -2,10 +2,10 @@
 \alias{psbcGL}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-The function to fit the PSBC model with group lasso prior
+Function to Fit the Penalized Semiparametric Bayesian Cox Model with Group Lasso Prior
 }
 \description{
-The function to fit the PSBC models with group lasso and Bayesian lasso priors
+Penalized semiparametric Bayesian Cox (PSBC) model with group lasso prior is implemented to analyze survival data with high-dimensional covariates.
 }
 \usage{
 psbcGL(survObj, priorPara, initial, rw=FALSE, mcmcPara, num.reps, 
@@ -30,7 +30,7 @@ psbcGL(survObj, priorPara, initial, rw=FALSE, mcmcPara, num.reps,
 
 \item{rw}{
 When setting to "TRUE", the conventional random walk Metropolis Hastings algorithm is used. 
-Otherwise, the mean and the variance of the proposal density is updated using the jumping rule described in Lee et al. (2013).
+Otherwise, the mean and the variance of the proposal density is updated using the jumping rule described in Lee et al. (2011).
 }
 \item{mcmcPara}{
 The list containing the values of options for Metropolis-Hastings step for \eqn{\beta};
@@ -83,8 +83,8 @@ For example, by setting "save = 1000", the algorithm saves the results every 100
 Lee, K. H., Chakraborty, S., and Sun, J. (2011). 
 Bayesian Variable Selection in Semiparametric Proportional Hazards Model for High Dimensional Survival Data. 
 \emph{The International Journal of Biostatistics}, 7, 21. \cr
-Lee, K. H., Chakraborty, S., and Sun, J. (2013).
-Survival Prediction and Variable Selection with Simultaneous Shrinkage and Grouping Priors, available from the authors upon request.
+Lee, K. H., Chakraborty, S., and Sun, J. (2015).
+Survival Prediction and Variable Selection with Simultaneous Shrinkage and Grouping Priors, under invited revision.
 }
 \author{
 Kyu Ha Lee, Sounak Chakraborty, (Tony) Jianguo Sun
@@ -101,6 +101,8 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 %objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
+
+\dontrun{
 
 # generate some survival data
 	
@@ -137,8 +139,8 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 	priorPara$r			<- 0.5
 	priorPara$delta		<- 0.0001
 	priorPara$s			<- sort(survObj$t[survObj$di == 1])
-	priorPara$s			<- c(priorPara$s, 2 * max(survObj$t) - 
-							max(survObj$t[-which(survObj$t==max(survObj$t))]))
+	priorPara$s			<- c(priorPara$s, 2*max(survObj$t)
+	-max(survObj$t[-which(survObj$t==max(survObj$t))]))
 	priorPara$J			<- length(priorPara$s)
 	priorPara$groupInd	<- c(rep(1,10),2:11)
 
@@ -150,17 +152,20 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 	initial$beta.ini	<- rep(0.5, p)
 	initial$lambdaSq	<- 1
 	initial$sigmaSq		<- runif(1, 0.1, 10)
-	initial$tauSq		<- rexp(length(unique(priorPara$groupInd)), rate = initial$lambdaSq/2)
+	initial$tauSq		<- rexp(length(unique(priorPara$groupInd)),
+	rate = initial$lambdaSq/2)
 	initial$h			<- rgamma(priorPara$J, 1, 1)
 
 	rw = FALSE
-	num.reps = 5
+	num.reps = 20000
 	chain = 1
 	thin = 5
 	save = 5
 
 	fitGL <- psbcGL(survObj, priorPara, initial, rw=FALSE, mcmcPara, 
-				num.reps, thin, chain, save)		
+				num.reps, thin, chain, save)
+				
+	}		
 
 }
 
