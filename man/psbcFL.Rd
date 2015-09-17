@@ -85,9 +85,10 @@ For example, by setting "save = 1000", the algorithm saves the results every 100
 \references{
 Lee, K. H., Chakraborty, S., and Sun, J. (2011). 
 Bayesian Variable Selection in Semiparametric Proportional Hazards Model for High Dimensional Survival Data. 
-\emph{The International Journal of Biostatistics}, 7, 21. \cr
+\emph{The International Journal of Biostatistics}, Volume 7, Issue 1, Pages 1-32. \cr
+
 Lee, K. H., Chakraborty, S., and Sun, J. (2015). 
-Survival Prediction and Variable Selection with Simultaneous Shrinkage and Grouping Priors, under invited revision.
+Survival Prediction and Variable Selection with Simultaneous Shrinkage and Grouping Priors. \emph{Statistical Analysis and Data Mining}, Volume 8, Issue 2, pages 114-127.
 }
 \author{
 Kyu Ha Lee, Sounak Chakraborty, (Tony) Jianguo Sun

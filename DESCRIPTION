@@ -2,15 +2,15 @@ Package: psbcGroup
 Type: Package
 Title: Penalized Semiparametric Bayesian Cox Models with Shrinkage and
         Grouping Priors
-Version: 1.1
-Date: 2015-02-09
+Version: 1.2
+Date: 2015-09-17
 Author: Kyu Ha Lee, Sounak Chakraborty, (Tony) Jianguo Sun
 Maintainer: Kyu Ha Lee <klee@hsph.harvard.edu>
-Description: The package provides algorithms for fitting penalized semiparametric Bayesian Cox (PSBC) models with shrinkage and grouping priors.
+Description: Algorithms for fitting penalized semiparametric Bayesian Cox models with shrinkage and grouping priors.
 License: GPL (>= 2)
-Depends: LearnBayes, SuppDists, mvtnorm, R (>= 2.12.2)
+Depends: LearnBayes, SuppDists, mvtnorm, R (>= 3.1.3)
 LazyLoad: yes
-Packaged: 2015-02-09 19:12:45 UTC; kyuhalee
 NeedsCompilation: no
+Packaged: 2015-09-17 15:08:12 UTC; kyuhalee
 Repository: CRAN
-Date/Publication: 2015-02-10 00:41:15
+Date/Publication: 2015-09-17 22:50:13

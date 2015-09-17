@@ -6,3 +6,5 @@ importFrom(LearnBayes, rigamma)
 import(SuppDists)
 import(mvtnorm)
 
+importFrom("stats", "dnorm", "rgamma", "rnorm", "runif")
+
