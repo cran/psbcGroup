@@ -2,23 +2,24 @@
 \alias{psbcGroup}
 \docType{package}
 \title{
-Penalized Semiparametric Bayesian Cox Models with Shrinkage and Grouping Priors
+Penalized Parametric and Semiparametric Bayesian Survival Models with Shrinkage and Grouping Priors
 }
 \description{
-The package provides algorithms for fitting penalized semiparametric Bayesian Cox (PSBC) models with elastic net, fused lasso, and group lasso priors.
+The package provides algorithms for fitting penalized parametric and semiparametric Bayesian survival models with elastic net, fused lasso, and group lasso priors.
 }
 \details{
 The package includes following functions:
 \tabular{ll}{
 \code{psbcEN} \tab The function to fit the PSBC model with elastic net prior \cr
 \code{psbcFL} \tab The function to fit the PSBC model with fused lasso prior \cr
-\code{psbcGL} \tab The function to fit the PSBC models with group lasso or Bayesian lasso prior \cr
+\code{psbcGL} \tab The function to fit the PSBC model with group lasso or Bayesian lasso prior \cr
+\code{aftGL} \tab The function to fit the parametric accelerated failure time model with group lasso \cr
 }
 \tabular{ll}{
 Package: \tab psbcGroup\cr
 Type: \tab Package\cr
-Version: \tab 1.2\cr
-Date: \tab 2015-09-17\cr
+Version: \tab 1.3\cr
+Date: \tab 2016-03-08\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -40,6 +41,9 @@ Bayesian Variable Selection in Semiparametric Proportional Hazards Model for Hig
 
 Lee, K. H., Chakraborty, S., and Sun, J. (2015). 
 Survival Prediction and Variable Selection with Simultaneous Shrinkage and Grouping Priors. \emph{Statistical Analysis and Data Mining}, Volume 8, Issue 2, pages 114-127.
+
+Lee, K. H., Chakraborty, S., and Sun, J. 
+Variable Selection for High-Dimensional Genomic Data with Censored Outcomes Using Group Lasso Prior. \emph{submitted}.
 }
 
 %~~ Optionally other standard keywords, one per line, from file ~~

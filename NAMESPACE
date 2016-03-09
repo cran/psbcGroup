@@ -1,6 +1,9 @@
+useDynLib(psbcGroup) 
+
 export(psbcEN)
 export(psbcFL)
 export(psbcGL)
+export(aftGL)
 
 importFrom(LearnBayes, rigamma)
 import(SuppDists)
