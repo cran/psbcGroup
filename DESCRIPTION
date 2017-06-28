@@ -2,8 +2,8 @@ Package: psbcGroup
 Type: Package
 Title: Penalized Parametric and Semiparametric Bayesian Survival Models
         with Shrinkage and Grouping Priors
-Version: 1.3
-Date: 2016-03-08
+Version: 1.4
+Date: 2017-06-28
 Author: Kyu Ha Lee, Sounak Chakraborty, (Tony) Jianguo Sun
 Maintainer: Kyu Ha Lee <klee@hsph.harvard.edu>
 Description: Algorithms for fitting penalized parametric and semiparametric Bayesian survival models with shrinkage and grouping priors.
@@ -11,6 +11,6 @@ License: GPL (>= 2)
 Depends: LearnBayes, SuppDists, mvtnorm, R (>= 3.2.3)
 LazyLoad: yes
 NeedsCompilation: yes
-Packaged: 2016-03-08 21:18:32 UTC; kyuhalee
+Packaged: 2017-06-28 19:48:32 UTC; kyuhalee
 Repository: CRAN
-Date/Publication: 2016-03-09 01:35:41
+Date/Publication: 2017-06-28 21:47:39 UTC

@@ -39,12 +39,8 @@ the proportion of burn-in
 \value{
 \code{aftGL} returns an object of class \code{aftGL}. \cr}
 \references{
-Lee, K. H. (2011). Bayesian Variable Selection in Parametric and Semiparametric
-  High-Dimensional Survival Analysis. \emph{Ph.D. thesis}, University of
-  Missouri--Columbia. \cr
-
 Lee, K. H., Chakraborty, S., and Sun, J. 
-Variable Selection for High-Dimensional Genomic Data with Censored Outcomes Using Group Lasso Prior. \emph{submitted}.
+Variable Selection for High-Dimensional Genomic Data with Censored Outcomes Using Group Lasso Prior. \emph{Computational Statistics and Data Analysis}, Volume 112, pages 1-13.\cr
 }
 \author{
 Kyu Ha Lee, Sounak Chakraborty, (Tony) Jianguo Sun

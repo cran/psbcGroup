@@ -1,5 +1,5 @@
-fb95215ed1a5a7f0f212061ff53cd3ce *DESCRIPTION
-4e1dd7544450d5fc97c9379de1742791 *NAMESPACE
+44b4989abbe2dd77459c1e65a0062f6f *DESCRIPTION
+bc300542849134dfa00d66c886e26134 *NAMESPACE
 af10d638995e2196c98b1381ea98a39e *R/UpdateBH.R
 b89b80d2fafe9703ced01f39a1546d68 *R/UpdateLambda.GL.R
 aa358f2cea6a3064dd68985820134451 *R/UpdateLambda1.EN.R
@@ -21,12 +21,13 @@ d2d845d5f43393406e1ab025a47e3e43 *R/psbcEN.R
 e2b579740d9419d94cca42ea652cfe6d *R/psbcFL.R
 e860e5ab62cd09ebb4c38f46b11701ff *R/psbcGL.R
 93a26b938ede37ffb00de6358d2e9533 *R/setting.interval.R
-fd633ec6cbe62f0e70a7585e85232711 *man/aftGL.Rd
+d01edcf8499c19e187c1393d73a99af7 *man/aftGL.Rd
 42b47c8b4d62f648617a1920d23cab25 *man/psbcEN.Rd
 d48ef670767c839b21e54adfa2293ff8 *man/psbcFL.Rd
 ba936f894c6231802674d2c0e9961af8 *man/psbcGL.Rd
-b769b732c7fc834eaf5ec2452cffd6c0 *man/psbcGroup.Rd
+ef1578a126eb6d6b36363d894252aea8 *man/psbcGroup.Rd
 6be2aa8c8fd39f5c7b7bf1e8169fc7be *src/Makevars
 60fb7075c633782dc80de8d84be12790 *src/aftGL.c
 fd8001fa4c6e2b9b9a396eb991e784ba *src/aftGL.h
 46a527faf4b68f11568e59c326a8badc *src/aftGL_Utilities.c
+07a182c158025ed5125d63a615a6cd37 *src/registerDynamicSymbol.c
