@@ -613,6 +613,11 @@ void aftGLmcmc(double survData[],
             samples_alpha[StoreInx - 1] = alpha;
             samples_sigSq[StoreInx - 1] = sigSq;
             
+            if(*p >0)
+            {
+                for(j = 0; j < *p; j++) samples_tauSq[(StoreInx - 1) * (*p) + j] = gsl_vector_get(tauSq, j);
+            }
+            
             samples_lambdaSq[StoreInx - 1] = lambdaSq;
             
             for(j = 0; j < *n; j++) samples_w[(StoreInx - 1) * (*n) + j] = gsl_vector_get(w, j);

@@ -161,10 +161,13 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 
 	fitFL <- psbcFL(survObj, priorPara, initial, rw=FALSE, mcmcPara, 
 				num.reps, thin, chain, save)
+	VS(fitFL, X=survObj$x)
+    
 	}						
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ fused lasso prior }
-\keyword{ PSBC model }% __ONLY ONE__ keyword per line
+\keyword{ proportional hazards models }% __ONLY ONE__ keyword per line
+\keyword{ semiparametric models }

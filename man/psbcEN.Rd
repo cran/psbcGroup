@@ -161,11 +161,14 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 
 	fitEN <- psbcEN(survObj, priorPara, initial, rw=FALSE, mcmcPara, 
 				num.reps, thin, chain, save)
-				
+
+	VS(fitEN, X=survObj$x)
+    
 	}		
 
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ elastic net prior }
-\keyword{ PSBC model }% __ONLY ONE__ keyword per line
+\keyword{ proportional hazards models }% __ONLY ONE__ keyword per line
+\keyword{ semiparametric models }

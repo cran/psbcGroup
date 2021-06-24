@@ -80,8 +80,10 @@ function(survObj, priorPara, initial, rw = FALSE, mcmcPara, num.reps, thin, chai
 
 	for(M in 1:num.reps){	
 	
-		cat("Chain", chain, "Iteration", M, fill=TRUE);
-
+        if(M %% 1000 == 0)
+        {
+            cat("Chain", chain, "Iteration", M, fill=TRUE);
+        }
 		
 		# Updating regression parameters
 		
@@ -181,7 +183,10 @@ function(survObj, priorPara, initial, rw = FALSE, mcmcPara, num.reps, thin, chai
 		} # the end of MCMC sampling
 		
 	
-	list(beta.p = beta.p, h.p = h.p, tauSq.p = tauSq.p, mcmcOutcome = mcmcOutcome)
+	ret <- list(beta.p = beta.p, h.p = h.p, tauSq.p = tauSq.p, mcmcOutcome = mcmcOutcome, t=survObj$t, di=survObj$di)
 	
+    class(ret) <- "psbcFL"
+    return(ret)
+    
 	} # end of "psbcGrp" function
 

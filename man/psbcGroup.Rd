@@ -18,8 +18,8 @@ The package includes following functions:
 \tabular{ll}{
 Package: \tab psbcGroup\cr
 Type: \tab Package\cr
-Version: \tab 1.4\cr
-Date: \tab 2017-06-28\cr
+Version: \tab 1.5\cr
+Date: \tab 2021-06-23\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -42,7 +42,7 @@ Bayesian Variable Selection in Semiparametric Proportional Hazards Model for Hig
 Lee, K. H., Chakraborty, S., and Sun, J. (2015). 
 Survival Prediction and Variable Selection with Simultaneous Shrinkage and Grouping Priors. \emph{Statistical Analysis and Data Mining}, Volume 8, Issue 2, pages 114-127.\cr
 
-Lee, K. H., Chakraborty, S., and Sun, J. 
+Lee, K. H., Chakraborty, S., and Sun, J. (2017). 
 Variable Selection for High-Dimensional Genomic Data with Censored Outcomes Using Group Lasso Prior. \emph{Computational Statistics and Data Analysis}, Volume 112, pages 1-13.\cr
 }
 

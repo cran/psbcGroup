@@ -4,10 +4,12 @@ export(psbcEN)
 export(psbcFL)
 export(psbcGL)
 export(aftGL)
+export(VS)
 
 importFrom(LearnBayes, rigamma)
 import(SuppDists)
 import(mvtnorm)
 
-importFrom("stats", "dnorm", "rgamma", "rnorm", "runif")
+importFrom("stats", "dnorm", "rgamma", "rnorm", "runif", "lm", "coef", "sd")
+importFrom("survival", "coxph")
 

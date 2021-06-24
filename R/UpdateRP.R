@@ -10,8 +10,6 @@ UpdateRP		<- function(survObj, priorPara, mcmcPara, ini){
 	ind.d			<- priorPara$ind.d
 	ind.r_d			<- priorPara$ind.r_d		
 	numBeta			<- mcmcPara$numBeta	
-#	beta.prop.me	<- mcmcPara$beta.prop.me
-#	beta.prop.var	<- mcmcPara$beta.prop.var
 	
 	xbeta			<- ini$xbeta
 	be.ini			<- ini$beta.ini
@@ -94,7 +92,7 @@ UpdateRP		<- function(survObj, priorPara, mcmcPara, ini){
 		D2.1st.prop <- -h * colSums(x.sq.exp.xbeta.prop.mat*ind.r_d)
 				
 		D2.2nd.den.prop <- D1.2nd.den.prop^2
-		D2.2nd.num.prop <- exp.h.exp.xbeta.prop.mat * x.sq.exp.xbeta.prop.mat * 							(1-exp.h.exp.xbeta.prop.mat +h.exp.xbeta.prop.mat)
+		D2.2nd.num.prop <- exp.h.exp.xbeta.prop.mat * x.sq.exp.xbeta.prop.mat * 	(1-exp.h.exp.xbeta.prop.mat +h.exp.xbeta.prop.mat)
 		D2.2nd.prop <- h * colSums(D2.2nd.num.prop/D2.2nd.den.prop*ind.d)
 		
 		D2.prop <- sum(D2.1st.prop + D2.2nd.prop) - 1/sd.be[j]^2
@@ -102,8 +100,6 @@ UpdateRP		<- function(survObj, priorPara, mcmcPara, ini){
 		be.prop.me.ini  <- be.prop[j] - D1.prop / D2.prop;
 		be.prop.var.ini <- -2.4^2 / D2.prop;
 
-		#### -
-				
 		first.sum 	<- colSums(exp.xbeta.mat*ind.r_d)
 		second.sum 	<- colSums(log(D1.2nd.den)*ind.d)
 

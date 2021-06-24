@@ -19,8 +19,6 @@ function(survObj, priorPara, mcmcPara, ini){
 	sigmaSq			<- ini$sigmaSq
 	tauSq			<- ini$tauSq
 	wSq				<- ini$wSq
-	#sd.be			<- ini$sd.be
-	
 	
 	updatej	<- sample(1:p, numBeta)
 	accept 	<- rep(0, p)
