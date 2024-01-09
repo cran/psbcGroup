@@ -161,7 +161,7 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 
 	fitFL <- psbcFL(survObj, priorPara, initial, rw=FALSE, mcmcPara, 
 				num.reps, thin, chain, save)
-	VS(fitFL, X=survObj$x)
+	vs <- VS(fitFL, X=survObj$x)
     
 	}						
 

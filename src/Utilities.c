@@ -8,15 +8,72 @@
 #include "gsl/gsl_linalg.h"
 #include "gsl/gsl_blas.h"
 #include "gsl/gsl_sort_vector.h"
+#include "gsl/gsl_heapsort.h"
+#include "gsl/gsl_sf.h"
+#include "gsl/gsl_rng.h"
+#include "gsl/gsl_randist.h"
 
 #include "R.h"
 #include "Rmath.h"
 
 #include "aftGL.h"
+#include "BAFTgpLT.h"
 
 #define Pi 3.141592653589793238462643383280
 
+/*
+ Minimum of two numbers
+ */
+double c_min(double value1,
+             double value2)
+{
+    double min = (value1 <= value2) ? value1 : value2;
+    return min;
+}
 
+
+
+/*
+ Maximum of two numbers
+ */
+double c_max(double value1,
+             double value2)
+{
+    double max = (value1 >= value2) ? value1 : value2;
+    return max;
+}
+
+
+int c_multinom_sample(gsl_rng *rr,
+                      gsl_vector *prob,
+                      int length_prob)
+{
+    int ii, val;
+    int KK = length_prob;
+    double probK[KK];
+    
+    for(ii = 0; ii < KK; ii++)
+    {
+        probK[ii] = gsl_vector_get(prob, ii);
+    }
+    
+    unsigned int samples[KK];
+    
+    gsl_ran_multinomial(rr, KK, 1, probK, samples);
+    
+    for(ii = 0; ii < KK; ii++)
+    {
+        if(samples[ii] == 1) val = ii + 1;
+    }
+    
+    return val;
+}
+
+double logistic(double x)
+{
+    double value = exp(x)/(1+exp(x));
+    return value;
+}
 
 /*
  Random generation from truncated normal distribution
@@ -119,6 +176,46 @@ void c_rtnorm(double mean,
     return;
 }
 
+
+
+
+
+/*
+ Random generation from truncated-truncated normal distribution
+ */
+void c_rttnorm(double mean,
+               double sd,
+               double LT,
+               double LL,
+              double UL,
+              int LL_neginf,
+              int UL_posinf,
+              double *value)
+{
+    int stop=0;
+    double sample_tnorm;
+
+    
+    if(UL_posinf == 1)
+    {
+        while(stop == 0)
+        {
+            c_rtnorm(mean, sd, LT, UL, 0, 1, &sample_tnorm);
+            if(sample_tnorm > LL) stop = 1;
+        }
+    }else
+    {
+        while(stop == 0)
+        {
+            c_rtnorm(mean, sd, LT, UL, 0, 1, &sample_tnorm);
+            if(sample_tnorm > LL && sample_tnorm < UL) stop = 1;
+        }
+    }
+
+
+    *value = sample_tnorm;
+    return;
+}
 
 
 
@@ -239,10 +336,8 @@ void c_rinvGauss(double nu,
  */
 void matrixInv(gsl_matrix *X, gsl_matrix *Xinv)
 {
-    gsl_matrix_set_zero(Xinv);
-    
     int signum;
-	int d = X->size1;
+    int d = X->size1;
     gsl_matrix      *XLU = gsl_matrix_calloc(d, d);
     gsl_permutation *p   = gsl_permutation_alloc(d);
     
@@ -254,6 +349,123 @@ void matrixInv(gsl_matrix *X, gsl_matrix *Xinv)
     gsl_permutation_free(p);
     return;
 }
+
+
+/*
+ Evaluate the quadratic form: v^T M^{-1} v
+ */
+void c_quadform_vMv(gsl_vector *v,
+                    gsl_matrix *Minv,
+                    double     *value)
+{
+    int    d = v->size;
+    gsl_vector *tempVec = gsl_vector_calloc(d);
+    
+    gsl_blas_dsymv(CblasUpper, 1, Minv, v, 0, tempVec);
+    gsl_blas_ddot(v, tempVec, value);
+    
+    gsl_vector_free(tempVec);
+    return;
+}
+
+/*
+ Density calculation for a multivariate normal distribution
+ */
+void c_dmvnorm2(gsl_vector *x,
+                gsl_vector *mu,
+                double     sigma,
+                gsl_matrix *AInv,
+                double     *value)
+{
+    int signum, K = x->size;
+    double sigmaSqInv = pow(sigma, -2);
+    
+    gsl_vector *diff       = gsl_vector_alloc(K);
+    gsl_matrix *SigmaInv   = gsl_matrix_alloc(K, K);
+    gsl_matrix *SigmaInvLU = gsl_matrix_alloc(K, K);
+    gsl_permutation *p     = gsl_permutation_alloc(K);
+    
+    gsl_vector_memcpy(diff, x);
+    gsl_vector_sub(diff, mu);
+    
+    gsl_matrix_memcpy(SigmaInv, AInv);
+    gsl_matrix_scale(SigmaInv, sigmaSqInv);
+    gsl_matrix_memcpy(SigmaInvLU, SigmaInv);
+    gsl_linalg_LU_decomp(SigmaInvLU, p, &signum);
+    
+    c_quadform_vMv(diff, SigmaInv, value);
+    
+    *value = (log(gsl_linalg_LU_det(SigmaInvLU, signum)) - log(pow(2*Pi, K)) - *value) / 2;
+    
+    gsl_vector_free(diff);
+    gsl_matrix_free(SigmaInv);
+    gsl_matrix_free(SigmaInvLU);
+    gsl_permutation_free(p);
+    return;
+}
+
+
+
+/*
+ Random generation from the Inverse Wishart distribution
+ */
+
+void c_riwishart(int v,
+                 gsl_matrix *X_ori,
+                 gsl_matrix *sample)
+{
+    int i, j, df;
+    double normVal;
+    int p = X_ori->size1;
+    
+    gsl_matrix *X = gsl_matrix_calloc(p, p);
+    matrixInv(X_ori, X);
+    
+    gsl_matrix *cholX = gsl_matrix_calloc(p, p);
+    gsl_matrix *ZZ = gsl_matrix_calloc(p, p);
+    gsl_matrix *XX = gsl_matrix_calloc(p, p);
+    gsl_matrix *KK = gsl_matrix_calloc(p, p);
+    
+    gsl_matrix_memcpy(cholX, X);
+    gsl_linalg_cholesky_decomp(cholX);
+    
+    for(i = 0; i < p; i ++)
+    {
+        for(j = 0; j < i; j ++)
+        {
+            gsl_matrix_set(cholX, i, j, 0);
+        }
+    }
+    
+    for(i = 0; i < p; i++)
+    {
+        df = v - i;
+        gsl_matrix_set(ZZ, i, i, sqrt(rchisq(df)));
+    }
+    
+    for(i = 0; i < p; i++)
+    {
+        for(j = 0; j < i; j ++)
+        {
+            normVal = rnorm(0, 1);
+            gsl_matrix_set(ZZ, i, j, normVal);
+        }
+    }
+    
+    gsl_blas_dgemm(CblasNoTrans, CblasNoTrans, 1, ZZ, cholX, 0, XX);
+    gsl_blas_dgemm(CblasTrans, CblasNoTrans, 1, XX, XX, 0, KK);
+    matrixInv(KK, sample);
+    
+    gsl_matrix_free(X);
+    gsl_matrix_free(cholX);
+    gsl_matrix_free(XX);
+    gsl_matrix_free(ZZ);
+    gsl_matrix_free(KK);
+    
+}
+
+
+
 
 
 /*

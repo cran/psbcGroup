@@ -14,12 +14,13 @@ The package includes following functions:
 \code{psbcFL} \tab The function to fit the PSBC model with fused lasso prior \cr
 \code{psbcGL} \tab The function to fit the PSBC model with group lasso or Bayesian lasso prior \cr
 \code{aftGL} \tab The function to fit the parametric accelerated failure time model with group lasso \cr
+\code{aftGL_LT} \tab The function to fit the parametric accelerated failure time model with group lasso for left-truncated and interval-censored data \cr
 }
 \tabular{ll}{
 Package: \tab psbcGroup\cr
 Type: \tab Package\cr
-Version: \tab 1.5\cr
-Date: \tab 2021-06-23\cr
+Version: \tab 1.7\cr
+Date: \tab 2024-1-9\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
 }
@@ -29,7 +30,7 @@ LazyLoad: \tab yes\cr
 
 
 \author{
-Kyu Ha Lee, Sounak Chakraborty, (Tony) Jianguo Sun \cr
+Kyu Ha Lee, Sounak Chakraborty, Harrison Reeder, (Tony) Jianguo Sun \cr
 Maintainer: Kyu Ha Lee <klee@hsph.harvard.edu>
 }
 
@@ -44,6 +45,9 @@ Survival Prediction and Variable Selection with Simultaneous Shrinkage and Group
 
 Lee, K. H., Chakraborty, S., and Sun, J. (2017). 
 Variable Selection for High-Dimensional Genomic Data with Censored Outcomes Using Group Lasso Prior. \emph{Computational Statistics and Data Analysis}, Volume 112, pages 1-13.\cr
+
+Reeder, H., Haneuse, S., Lee, K. H. (2023+). 
+Group Lasso Priors for Bayesian Accelerated Failure Time Models with Left-Truncated and Interval-Censored Time-to-Event Data. \emph{under review} \cr
 }
 
 %~~ Optionally other standard keywords, one per line, from file ~~

@@ -2,15 +2,15 @@ Package: psbcGroup
 Type: Package
 Title: Penalized Parametric and Semiparametric Bayesian Survival Models
         with Shrinkage and Grouping Priors
-Version: 1.5
-Date: 2021-06-23
-Author: Kyu Ha Lee, Sounak Chakraborty, (Tony) Jianguo Sun
-Maintainer: Kyu Ha Lee <klee15239@gmail.com>
+Version: 1.7
+Date: 2024-1-9
+Author: Kyu Ha Lee, Sounak Chakraborty, Harrison Reeder, (Tony) Jianguo Sun
+Maintainer: Kyu Ha Lee <klee@hsph.harvard.edu>
 Description: Algorithms to implement various Bayesian penalized survival regression models including: semiparametric proportional hazards models with lasso priors (Lee et al., Int J Biostat, 2011 <doi:10.2202/1557-4679.1301>) and three  other shrinkage and group priors (Lee et al., Stat Anal Data Min, 2015 <doi:10.1002/sam.11266>); parametric accelerated failure time models with group/ordinary lasso prior (Lee et al. Comput Stat Data Anal, 2017 <doi:10.1016/j.csda.2017.02.014>).
 License: GPL (>= 2)
 Depends: LearnBayes, SuppDists, mvtnorm, survival, R (>= 3.2.3)
 LazyLoad: yes
 NeedsCompilation: yes
-Packaged: 2021-06-24 01:01:04 UTC; kyuhalee
+Packaged: 2024-01-09 20:13:20 UTC; kyuhalee
 Repository: CRAN
-Date/Publication: 2021-06-24 06:30:08 UTC
+Date/Publication: 2024-01-09 22:30:11 UTC

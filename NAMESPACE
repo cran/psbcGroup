@@ -4,6 +4,7 @@ export(psbcEN)
 export(psbcFL)
 export(psbcGL)
 export(aftGL)
+export(aftGL_LT)
 export(VS)
 
 importFrom(LearnBayes, rigamma)

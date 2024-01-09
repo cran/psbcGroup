@@ -10,7 +10,6 @@ VS <- function(fit, X, psiVec=seq(0.001, 1, 0.001))
     p <- dim(fit$beta.p)[2]
     beta.me <- apply(fit$beta.p, 2, mean)
     
-    psiVec <- seq(0.001, 1, 0.001)
     selList <- list()
     nSel <- rep(NA, length(psiVec))
     
@@ -30,7 +29,7 @@ VS <- function(fit, X, psiVec=seq(0.001, 1, 0.001))
     
     bicVec <- rep(NA, length(psiVec))
     
-    if(class(fit)=="aftGL")
+    if(inherits(fit, "aftGL"))
     {
         w.me <- apply(fit$w.p, 2, mean)
         alpha.me <- mean(fit$alpha.p)
@@ -65,7 +64,7 @@ VS <- function(fit, X, psiVec=seq(0.001, 1, 0.001))
             bicVec[i] <- bic4(t=exp(w.me), x=X, alpha=alpha.me, beta=gam*betaHat, beta_all = beta.me, sigmaSq=sigSq.me, tauSq=tauSq.me, nu0, sigSq0, alpha0, h0)
         }
         
-    }else if(class(fit)=="psbcEN" | class(fit)=="psbcFL" | class(fit)=="psbcGL")
+    }else if(inherits(fit, "psbcEN") | inherits(fit, "psbcFL")| inherits(fit, "psbcGL"))
     {
         for(i in 1:length(psiVec))
         {
@@ -98,11 +97,13 @@ VS <- function(fit, X, psiVec=seq(0.001, 1, 0.001))
     vSel <- list(selList = selList, nSel = nSel, bicVec = bicVec, psiVec = psiVec)
     Sel.ind <- selList[[which(bicVec==min(bicVec))[1]]]
     
-    list(Sel.ind=Sel.ind, vSel=vSel)
+    ret <- list(Sel.ind=Sel.ind, vSel=vSel)
     
     ##
     cat("\nIndicators for variables selected based on SNC-BIC thresholding\n")
     print(Sel.ind)
+    
+    return(ret)
 }
 
 

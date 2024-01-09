@@ -165,7 +165,7 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 
 	fitGL <- psbcGL(survObj, priorPara, initial, rw=FALSE, mcmcPara, 
 				num.reps, thin, chain, save)
-	VS(fitGL, X=survObj$x)
+	vs <- VS(fitGL, X=survObj$x)
 				
 	}		
 

@@ -162,7 +162,7 @@ as \code{.Rdata} file under the directory \code{working directory/mcmcOutcome}.
 	fitEN <- psbcEN(survObj, priorPara, initial, rw=FALSE, mcmcPara, 
 				num.reps, thin, chain, save)
 
-	VS(fitEN, X=survObj$x)
+	vs <- VS(fitEN, X=survObj$x)
     
 	}		
 

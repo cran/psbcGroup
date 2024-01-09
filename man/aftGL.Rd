@@ -97,7 +97,7 @@ Kyu Ha Lee, Sounak Chakraborty, (Tony) Jianguo Sun
 	############################
 	fit <- aftGL(Y, data, grpInx, hyperParams, startValues, mcmc)
 \dontrun{  
-VS(fit, X=data)
+vs <- VS(fit, X=data)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
